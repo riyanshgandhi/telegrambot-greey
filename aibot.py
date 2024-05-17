@@ -1,18 +1,8 @@
-from telegram import *
-from telegram.ext import *
-from telegram.ext.Updater import Updater 
-from telegram.update import Update 
-from telegram.ext.callbackcontext import CallbackContext 
-from telegram.ext.commandhandler import CommandHandler 
-from telegram.ext.messagehandler import MessageHandler 
-from telegram.ext.filters import Filters 
 
-
-Token = ("ur bot id")
-updater = Updater("ur bot id", use_context=True)
+import telegram.ext 
 
 def start(update, context):
-    update.message.reply_text("Hello! Welcome to Greey")
+    update.message.reply_text("Hello! Welcome to Simplilearn")
     
 def help(update,context):
     update.message.reply_text("""
@@ -20,49 +10,49 @@ def help(update,context):
     
     /start -> Welcome to the channel
     /help -> This message
-    /content -> Greey CALM's you Down
-    /Python  -> python tutorial
-    /SQL -> SQL tutorial
-    /Java -> Java tutorial
-    /Greey -> AIBOT for you
-    /contact -> CALL my Owner riyo
+    /content -> Simplilearn offers various courses free of course through Skillup by Simplilearn
+    /Python  -> The first video from Python Playlist
+    /SQL -> The first video from SQL Playlist
+    /Java -> The first video from Java Playlist
+    /Skillup -> Free platform for certification by Simplilearn
+    /contact -> contact information 
      """)
     
 def content(update, context):
     update.message.reply_text("We have various playlists and articles available!")
 
 def Python(update, context):
-    update.message.reply_text("tutorial link : https://youtu.be/ERCMXc8x7mc?si=_dHY_DDRwDCggXIq")
+    update.message.reply_text("tutorial link : https://youtu.be/Tm5u97I7OrM")
 
 def SQL(update, context):
-    update.message.reply_text("tutorial link : https://youtu.be/hlGoQC332VM?si=8SnJzwWltAgXryuQ")
+    update.message.reply_text("tutorial link : https://youtu.be/pFq1pgli0OQ")
     
 def Java(update, context):
-    update.message.reply_text("tutorial link : https://youtu.be/UmnCZ7-9yDY?si=jq18Ma33ZSr16L1T")
+    update.message.reply_text("tutorial link : https://youtu.be/i6AZdFxTK9I")
     
-def Greey(update, context):
-    update.message.reply_text("tutorial link : https://github.com/riyanshgandhi")
+def Skillup(update, context):
+    update.message.reply_text("tutorial link : https://www.simplilearn.com/?&utm_source=google&utm_medium=cpc&utm_term=%2Bwww%20%2Bsimplilearn%20%2Bcom&utm_content=803350713-40537012023-467574577661&utm_device=c&utm_campaign=Search-Brand-Broad-IN-AllDevice-adgroup-brand-navigation&gclid=Cj0KCQjw0oyYBhDGARIsAMZEuMv5mA9EysZZ5NfhK65Cb5OU0Q0TVC4con6DQzHF502-dfgA7QQFCgQaAu5sEALw_wcB")
     
 def contact(update, context):
-    update.message.reply_text("You can contact on my linkedin")
+    update.message.reply_text("You can contact on the official mail id")
 
 def handle_message(update, context):
     update.message.reply_text(f"You said {update.message.text}, use the commands using /")
 
 
-
+Token = ("6759779941:AAGGGHdnV279x2vWzSmpd3z7u3FaX0GAcd4")
 #print(bot.get_me())
+updater = telegram.ext.Updater("6759779941:AAGGGHdnV279x2vWzSmpd3z7u3FaX0GAcd4",update_queue=None)
+disp = updater.bot
 
-dispatcher = updater.dispatcher
-
-disp.add_handler(CommandHandler('start',start))
-disp.add_handler(CommandHandler('help',help))
-disp.add_handler(CommandHandler('content',content))
-disp.add_handler(CommandHandler('Python',Python))
-disp.add_handler(CommandHandler('SQL',SQL))
-disp.add_handler(CommandHandler('Java',Java))
-disp.add_handler(CommandHandler('Greey',Greey))
-disp.add_handler(CommandHandler('contact',contact))
-disp.add_handler(MessageHandler(telegram.ext.Filters.text, handle_message))
+disp.add_handler(telegram.ext.CommandHandler('start',start))
+disp.add_handler(telegram.ext.CommandHandler('help',help))
+disp.add_handler(telegram.ext.CommandHandler('content',content))
+disp.add_handler(telegram.ext.CommandHandler('Python',Python))
+disp.add_handler(telegram.ext.CommandHandler('SQL',SQL))
+disp.add_handler(telegram.ext.CommandHandler('Java',Java))
+disp.add_handler(telegram.ext.CommandHandler('Skillup',Skillup))
+disp.add_handler(telegram.ext.CommandHandler('contact',contact))
+disp.add_handler(telegram.ext.MessageHandler(telegram.ext.Filters.text, handle_message))
 updater.start_polling()
 updater.idle()
